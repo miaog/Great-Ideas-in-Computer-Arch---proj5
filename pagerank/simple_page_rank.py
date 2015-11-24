@@ -97,8 +97,20 @@ class SimplePageRank(object):
         You are allowed to change the signature if you desire to.
         """
         def distribute_weights((node, (weight, targets))):
-            # YOUR CODE HERE
-            return []        
+            p = list()
+            m = (node, ((0.05*weight) + 0.1, targets))
+            p.append(m)
+            if type(targets) is frozenset:
+                num = len(targets)
+                if num != 0:
+                    for t in targets:
+                        k = (0.85/num) * weight
+                        p.append((t, (k, [])))
+                else:
+                    for i in range(0, num_nodes):
+                        if i != node:
+                            p.append((i, ((0.85/(num_nodes-1))*weight, [])))
+            return p
 
         """
         Reducer phase.
@@ -110,9 +122,16 @@ class SimplePageRank(object):
         The output of this phase should be in the same format as the input to the mapper.
         You are allowed to change the signature if you desire to.
         """
-        def collect_weights((node, values)):
-            # YOUR CODE HERE
-            return []
+        def collect_weights((node, values)):   
+            sumw = 0.0 
+            tar = []
+            for v in values:
+                for i in v:
+                    if type(i) is frozenset: 
+                        tar = i
+                    elif type(i) is float or type(i) is int:
+                        sumw += i
+            return (node, (sumw, tar))
 
         return nodes\
                 .flatMap(distribute_weights)\
