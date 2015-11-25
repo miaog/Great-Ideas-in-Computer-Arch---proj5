@@ -109,9 +109,8 @@ class BackedgesPageRank(SimplePageRank):
                     if type(v[i]) is frozenset: 
                         tar = v[i]
                     elif type(v[i]) is float or type(v[i]) is int:
-                        if i == 0:
-                            if v[0] != 0.0:
-                                old = v[0]
+                        if i == 0 and v[0] != 0.0:
+                            old = v[0]
                         else:
                             sumw += v[i]
                     i += 1
