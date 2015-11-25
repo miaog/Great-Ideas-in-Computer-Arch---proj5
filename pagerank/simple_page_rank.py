@@ -81,6 +81,7 @@ class SimplePageRank(object):
     Details about the update algorithm are in the spec on the website.
     You are allowed to change the signature if you desire to.
     """
+    
     @staticmethod
     def update_weights(nodes, num_nodes):
         """
