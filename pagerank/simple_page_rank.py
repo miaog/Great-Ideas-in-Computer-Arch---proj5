@@ -150,3 +150,4 @@ class SimplePageRank(object):
                 .map(lambda (node, (weight, targets)): (weight, node))\
                 .sortByKey(ascending = False)\
                 .map(lambda (weight, node): (node, weight))
+

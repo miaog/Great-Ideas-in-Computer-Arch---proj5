@@ -133,4 +133,3 @@ class BackedgesPageRank(SimplePageRank):
                 .map(lambda (node, (old_weight, weight, targets)): (weight, node))\
                 .sortByKey(ascending = False)\
                 .map(lambda (weight, node): (node, weight))
-
