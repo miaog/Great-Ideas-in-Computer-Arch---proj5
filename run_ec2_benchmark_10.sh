@@ -1,4 +1,4 @@
-repartition_count=20
+repartition_count=100
 
 mkdir results
 touch results/output_10
